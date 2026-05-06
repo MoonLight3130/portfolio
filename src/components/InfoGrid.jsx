@@ -47,7 +47,7 @@ const experiences = [
   },
 ]
 
-function InfoGrid() {
+function InfoGrid({ onNavClick }) {
   const sectionRef = useRef(null)
 
   useGSAP(
@@ -93,6 +93,7 @@ function InfoGrid() {
           </p>
           <button
             type="button"
+            onClick={() => onNavClick && onNavClick('About')}
             className="mt-8 inline-flex h-13 items-center rounded-xl border border-[#37568d] bg-[#111c37]/88 px-7 text-[13px] font-semibold tracking-[1.25px] text-white shadow-[0_0_28px_rgba(139,92,246,0.32)] transition duration-300 hover:border-[#8B5CF6] hover:shadow-[0_0_36px_rgba(139,92,246,0.68)]"
           >
             MORE ABOUT ME

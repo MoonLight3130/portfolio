@@ -14,7 +14,7 @@ const socialLinks = [
 const referenceImage =
   '/@fs/C:/Users/user/.cursor/projects/c-Users-user-mine/assets/c__Users_user_AppData_Roaming_Cursor_User_workspaceStorage_4846a57a9b2ff58d7a75f71df639bb94_images_1000142909-9e753400-6fd9-4baf-9b8e-87db22fb2f9a.png'
 
-function Hero() {
+function Hero({ onNavClick }) {
   const heroRef = useRef(null)
   const profileRef = useRef(null)
   const glowRef = useRef(null)
@@ -212,12 +212,14 @@ function Hero() {
         <div className="hero-reveal mt-11 flex items-center gap-5">
           <button
             type="button"
+            onClick={() => onNavClick && onNavClick('Projects')}
             className="cta-btn h-[58px] rounded-[16px] border border-[#8B5CF6]/80 bg-gradient-to-r from-[#6d5cff] via-[#9367ff] to-[#d66dff] px-9 text-[13px] font-semibold tracking-[1.3px] text-white shadow-[0_14px_38px_rgba(139,92,246,0.62)] transition duration-300 hover:shadow-[0_0_42px_rgba(139,92,246,0.82)]"
           >
             VIEW MY WORK
           </button>
           <button
             type="button"
+            onClick={() => onNavClick && onNavClick('Contact')}
             className="cta-btn h-[58px] rounded-[16px] border border-white/26 bg-[#11192f]/84 px-9 text-[13px] font-semibold tracking-[1.3px] text-white/92 shadow-[0_0_30px_rgba(0,0,0,0.45)] transition duration-300 hover:border-[#00D9FF]/58 hover:text-white hover:shadow-[0_0_32px_rgba(0,217,255,0.42)]"
           >
             DOWNLOAD CV
