@@ -80,6 +80,64 @@ function ProjectsPage({ onBack }) {
         stagger: 0.08,
         delay: 0.4,
       })
+
+      // 3D tilt hover effect for project cards
+      const cards = gsap.utils.toArray('.projects-card')
+      cards.forEach((card) => {
+        const glow = card.querySelector('.card-glow')
+
+        const handleMouseMove = (e) => {
+          const rect = card.getBoundingClientRect()
+          const x = e.clientX - rect.left
+          const y = e.clientY - rect.top
+          const centerX = rect.width / 2
+          const centerY = rect.height / 2
+
+          const rotateX = ((y - centerY) / centerY) * -6
+          const rotateY = ((x - centerX) / centerX) * 6
+
+          gsap.to(card, {
+            rotateX,
+            rotateY,
+            scale: 1.02,
+            duration: 0.4,
+            ease: 'power2.out',
+          })
+
+          if (glow) {
+            gsap.to(glow, {
+              x: (x - centerX) * 0.2,
+              y: (y - centerY) * 0.2,
+              opacity: 0.8,
+              duration: 0.4,
+              ease: 'power2.out',
+            })
+          }
+        }
+
+        const handleMouseLeave = () => {
+          gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+          })
+
+          if (glow) {
+            gsap.to(glow, {
+              x: 0,
+              y: 0,
+              opacity: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+            })
+          }
+        }
+
+        card.addEventListener('mousemove', handleMouseMove)
+        card.addEventListener('mouseleave', handleMouseLeave)
+      })
     },
     { scope: pageRef },
   )
@@ -100,7 +158,7 @@ function ProjectsPage({ onBack }) {
       <div className="relative z-10 mx-auto w-full max-w-[1580px] px-6 pb-32 pt-12 sm:px-12 lg:px-16">
         <button
           onClick={onBack}
-          className="projects-reveal mb-12 flex items-center gap-3 text-[14px] font-medium uppercase tracking-[1.5px] text-white/70 transition duration-300 hover:text-[#00D9FF]"
+          className="mb-12 flex items-center gap-3 text-[14px] font-medium uppercase tracking-[1.5px] text-white/90 transition duration-300 hover:text-[#00D9FF]"
         >
           <FaArrowLeft />
           Back to Portfolio
@@ -123,12 +181,21 @@ function ProjectsPage({ onBack }) {
           side projects, all built with modern technologies and best practices.
         </p>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" style={{ perspective: '1000px' }}>
           {projects.map((project, index) => (
             <div
               key={index}
               className="projects-card group relative overflow-hidden rounded-[22px] border border-[#2b4976]/80 bg-[#0a1228]/90 p-7 shadow-[inset_0_0_40px_rgba(0,217,255,0.08),0_14px_48px_rgba(2,8,25,0.6),0_0_28px_rgba(0,217,255,0.06)] transition duration-500 hover:border-[#4a73b5] hover:shadow-[inset_0_0_56px_rgba(0,217,255,0.16),0_0_52px_rgba(139,92,246,0.4),0_0_68px_rgba(0,217,255,0.18)]"
+              style={{ transformStyle: 'preserve-3d' }}
             >
+              <div
+                className="card-glow pointer-events-none absolute inset-0 rounded-[22px] opacity-0"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, ${project.iconColor}15, transparent 70%)`,
+                  filter: 'blur(20px)',
+                  transform: 'translateZ(-10px)',
+                }}
+              />
               <div
                 className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
                 style={{

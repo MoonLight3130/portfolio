@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
+import { useSmoothMousePosition } from '../hooks/useMousePosition'
 
 const socialLinks = [
   { icon: FaGithub, href: '#', label: 'GitHub' },
@@ -10,14 +11,17 @@ const socialLinks = [
   { icon: FaInstagram, href: '#', label: 'Instagram' },
 ]
 
-const referenceImage = '/src/assets/ChatGPT Image May 6, 2026, 02_32_48 PM.png'
+const referenceImage =
+  '/@fs/C:/Users/user/.cursor/projects/c-Users-user-mine/assets/c__Users_user_AppData_Roaming_Cursor_User_workspaceStorage_4846a57a9b2ff58d7a75f71df639bb94_images_1000142909-9e753400-6fd9-4baf-9b8e-87db22fb2f9a.png'
 
-function Hero({ onNavClick }) {
+function Hero() {
   const heroRef = useRef(null)
   const profileRef = useRef(null)
   const glowRef = useRef(null)
   const blobARef = useRef(null)
   const blobBRef = useRef(null)
+  const imageContainerRef = useRef(null)
+  const mousePosition = useSmoothMousePosition(0.08)
 
   useGSAP(
     () => {
@@ -133,6 +137,43 @@ function Hero({ onNavClick }) {
     { scope: heroRef },
   )
 
+  // 3D tilt effect based on mouse position
+  useGSAP(() => {
+    if (!imageContainerRef.current || !profileRef.current) return
+
+    const rotateX = mousePosition.y * -8
+    const rotateY = mousePosition.x * 8
+    const moveX = mousePosition.x * 15
+    const moveY = mousePosition.y * 15
+
+    gsap.to(imageContainerRef.current, {
+      rotateX,
+      rotateY,
+      x: moveX,
+      y: moveY,
+      duration: 0.8,
+      ease: 'power2.out',
+    })
+
+    // Depth layers for glow effects
+    gsap.to(blobARef.current, {
+      x: moveX * 0.5,
+      y: moveY * 0.5,
+      duration: 1,
+      ease: 'power2.out',
+    })
+
+    gsap.to(blobBRef.current, {
+      x: -moveX * 0.3,
+      y: -moveY * 0.3,
+      duration: 1.2,
+      ease: 'power2.out',
+    })
+  }, {
+    scope: heroRef,
+    dependencies: [mousePosition.x, mousePosition.y]
+  })
+
   return (
     <section
       ref={heroRef}
@@ -171,14 +212,12 @@ function Hero({ onNavClick }) {
         <div className="hero-reveal mt-11 flex items-center gap-5">
           <button
             type="button"
-            onClick={() => onNavClick && onNavClick('Projects')}
             className="cta-btn h-[58px] rounded-[16px] border border-[#8B5CF6]/80 bg-gradient-to-r from-[#6d5cff] via-[#9367ff] to-[#d66dff] px-9 text-[13px] font-semibold tracking-[1.3px] text-white shadow-[0_14px_38px_rgba(139,92,246,0.62)] transition duration-300 hover:shadow-[0_0_42px_rgba(139,92,246,0.82)]"
           >
             VIEW MY WORK
           </button>
           <button
             type="button"
-            onClick={() => onNavClick && onNavClick('Contact')}
             className="cta-btn h-[58px] rounded-[16px] border border-white/26 bg-[#11192f]/84 px-9 text-[13px] font-semibold tracking-[1.3px] text-white/92 shadow-[0_0_30px_rgba(0,0,0,0.45)] transition duration-300 hover:border-[#00D9FF]/58 hover:text-white hover:shadow-[0_0_32px_rgba(0,217,255,0.42)]"
           >
             DOWNLOAD CV
@@ -186,37 +225,41 @@ function Hero({ onNavClick }) {
         </div>
       </div>
 
-      <div className="hero-col relative z-10 grid place-items-center lg:pr-4">
-        <div ref={profileRef} className="hero-reveal relative">
+      <div className="hero-col relative z-10 grid place-items-center lg:pr-4" style={{ perspective: '1000px' }}>
+        <div ref={profileRef} className="hero-reveal relative" style={{ transformStyle: 'preserve-3d' }}>
           <div
             ref={blobARef}
             className="absolute -left-[80px] top-[60px] h-[180px] w-[180px] rounded-full bg-[#00D9FF]/38 blur-[44px]"
+            style={{ transform: 'translateZ(-20px)' }}
           />
           <div
             ref={blobBRef}
             className="absolute -right-[85px] bottom-[50px] h-[200px] w-[200px] rounded-full bg-[#8B5CF6]/42 blur-[50px]"
+            style={{ transform: 'translateZ(-30px)' }}
           />
-          <div className="absolute inset-[-72px] rounded-full bg-[radial-gradient(circle_at_32%_28%,rgba(0,217,255,0.5),transparent_58%),radial-gradient(circle_at_72%_74%,rgba(139,92,246,0.72),transparent_54%)] blur-[48px]" />
-          <div className="hero-particle absolute left-[8%] top-[12%] h-3 w-3 rounded-full bg-[#00D9FF] shadow-[0_0_18px_#00D9FF]" />
-          <div className="hero-particle absolute right-[10%] top-[14%] h-2.5 w-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_18px_#8B5CF6]" />
-          <div className="hero-particle absolute -right-[12px] bottom-[22%] h-2.5 w-2.5 rounded-full bg-[#00D9FF] shadow-[0_0_18px_#00D9FF]" />
-          <div className="hero-particle absolute left-[4%] bottom-[24%] h-2.5 w-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_18px_#8B5CF6]" />
-          <div className="hero-particle absolute left-[16%] top-[38%] h-2 w-2 rounded-full bg-[#a78bfa] shadow-[0_0_14px_#a78bfa]" />
-          <div className="hero-particle absolute right-[18%] bottom-[36%] h-2 w-2 rounded-full bg-[#67e8f9] shadow-[0_0_14px_#67e8f9]" />
+          <div className="absolute inset-[-72px] rounded-full bg-[radial-gradient(circle_at_32%_28%,rgba(0,217,255,0.5),transparent_58%),radial-gradient(circle_at_72%_74%,rgba(139,92,246,0.72),transparent_54%)] blur-[48px]" style={{ transform: 'translateZ(-40px)' }} />
+          <div className="hero-particle absolute left-[8%] top-[12%] h-3 w-3 rounded-full bg-[#00D9FF] shadow-[0_0_18px_#00D9FF]" style={{ transform: 'translateZ(20px)' }} />
+          <div className="hero-particle absolute right-[10%] top-[14%] h-2.5 w-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_18px_#8B5CF6]" style={{ transform: 'translateZ(30px)' }} />
+          <div className="hero-particle absolute -right-[12px] bottom-[22%] h-2.5 w-2.5 rounded-full bg-[#00D9FF] shadow-[0_0_18px_#00D9FF]" style={{ transform: 'translateZ(15px)' }} />
+          <div className="hero-particle absolute left-[4%] bottom-[24%] h-2.5 w-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_18px_#8B5CF6]" style={{ transform: 'translateZ(25px)' }} />
+          <div className="hero-particle absolute left-[16%] top-[38%] h-2 w-2 rounded-full bg-[#a78bfa] shadow-[0_0_14px_#a78bfa]" style={{ transform: 'translateZ(10px)' }} />
+          <div className="hero-particle absolute right-[18%] bottom-[36%] h-2 w-2 rounded-full bg-[#67e8f9] shadow-[0_0_14px_#67e8f9]" style={{ transform: 'translateZ(35px)' }} />
           <div
             ref={glowRef}
             className="pulse-glow absolute inset-[-36px] rounded-full bg-[conic-gradient(from_120deg,#00D9FF,rgba(0,217,255,0.12),#8B5CF6,rgba(139,92,246,0.25),#00D9FF)] opacity-95 blur-[1.5px]"
+            style={{ transform: 'translateZ(-10px)' }}
           />
-          <div className="absolute inset-[10px] rounded-full border border-white/26 shadow-[inset_0_0_34px_rgba(255,255,255,0.26)]" />
-          <div className="relative h-[500px] w-[500px] overflow-hidden rounded-full border border-white/22 bg-[#182440] shadow-[0_0_120px_rgba(0,217,255,0.68),0_0_220px_rgba(139,92,246,0.52),inset_0_0_65px_rgba(0,217,255,0.18)]">
+          <div className="absolute inset-[10px] rounded-full border border-white/26 shadow-[inset_0_0_34px_rgba(255,255,255,0.26)]" style={{ transform: 'translateZ(5px)' }} />
+          <div ref={imageContainerRef} className="relative h-[500px] w-[500px] overflow-hidden rounded-full border border-white/22 bg-[#182440] shadow-[0_0_120px_rgba(0,217,255,0.68),0_0_220px_rgba(139,92,246,0.52),inset_0_0_65px_rgba(0,217,255,0.18)]" style={{ transformStyle: 'preserve-3d' }}>
             <img
               src={referenceImage}
               alt="Haran profile"
-              className="h-full w-full scale-[1.05] object-cover object-[50%_25%] contrast-[1.05] saturate-[1.05] brightness-[1.02]"
+              className="h-full w-full scale-[1.75] object-cover object-[50%_18%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
+              style={{ transform: 'translateZ(10px)' }}
             />
           </div>
 
-          <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-white/18 bg-[#111a34]/92 px-5 py-2.5 text-[14px] text-white/92 shadow-[0_0_32px_rgba(0,217,255,0.32)] backdrop-blur-xl">
+          <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-white/18 bg-[#111a34]/92 px-5 py-2.5 text-[14px] text-white/92 shadow-[0_0_32px_rgba(0,217,255,0.32)] backdrop-blur-xl" style={{ transform: 'translateZ(50px) translateX(-50%)' }}>
             <span className="h-3 w-3 rounded-full bg-[#4dff9f] shadow-[0_0_10px_rgba(77,255,159,0.9)]" />
             Available for work
           </div>
