@@ -5,12 +5,13 @@ import { FaAward, FaCalendar, FaExternalLinkAlt, FaArrowLeft } from 'react-icons
 
 const certifications = [
   {
-    title: 'Meta Front-End Developer',
-    org: 'Meta (Facebook)',
-    date: '2024',
-    description: 'Professional certificate covering React, advanced CSS, JavaScript, and responsive design principles.',
-    skills: ['React', 'Advanced CSS', 'JavaScript', 'UX/UI'],
+    title: 'AI Fundamentals',
+    org: 'Google',
+    date: '2026',
+    description: 'Professional certificate covering AI Personalization, Prompt Patterns, Google Workspace, and AI powered creativity.',
+    skills: ['Artificial Intelligence', 'AI Workflows', 'AI Personalization', 'Prompt Patterns'],
     color: '#00D9FF',
+    url: 'https://coursera.org/share/75d17e4c358e8beaef9d44c19b3f34f1',
   },
   {
     title: 'AWS Cloud Practitioner',
@@ -167,13 +168,25 @@ function CertificationsPage({ onBack }) {
                   ))}
                 </div>
 
-                <button
-                  type="button"
-                  className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[1.2px] text-white/80 transition duration-300 hover:text-[#00D9FF]"
-                >
-                  Verify Credential
-                  <FaExternalLinkAlt size={11} />
-                </button>
+                {cert.url ? (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[1.2px] text-white/80 transition duration-300 hover:text-[#00D9FF]"
+                  >
+                    Verify Credential
+                    <FaExternalLinkAlt size={11} />
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[1.2px] text-white/80 transition duration-300 hover:text-[#00D9FF]"
+                  >
+                    Verify Credential
+                    <FaExternalLinkAlt size={11} />
+                  </button>
+                )}
               </div>
             </div>
           ))}
