@@ -95,7 +95,7 @@ function ProjectsSection() {
           </a>
         </div>
 
-        <div className="grid gap-5 p-6 lg:grid-cols-3 lg:p-8">
+        <div className="grid gap-5 p-4 sm:p-6 lg:grid-cols-3 lg:p-8">
           {projects.map((project) => (
             <article
               key={project.title}
@@ -113,15 +113,15 @@ function ProjectsSection() {
 
               <div className="mt-5 flex items-center gap-3">
                 <project.icon
-                  size={28}
+                  size={24}
                   style={{ color: project.iconColor }}
-                  className="[filter:drop-shadow(0_0_8px_currentColor)]"
+                  className="[filter:drop-shadow(0_0_8px_currentColor)] sm:size-28"
                 />
-                <h4 className="text-[32px] font-semibold tracking-[-0.5px] text-white">
+                <h4 className="text-[24px] font-semibold tracking-[-0.5px] text-white sm:text-[32px]">
                   {project.title}
                 </h4>
               </div>
-              <p className="mt-2.5 min-h-[80px] text-[18px] leading-[1.62] text-[#aec2e1]">
+              <p className="mt-2.5 min-h-[60px] text-[16px] leading-[1.62] text-[#aec2e1] sm:min-h-[80px] sm:text-[18px]">
                 {project.description}
               </p>
 
