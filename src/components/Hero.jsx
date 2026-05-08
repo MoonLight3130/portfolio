@@ -1,18 +1,16 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 import { useSmoothMousePosition } from '../hooks/useMousePosition'
 
 const socialLinks = [
-  { icon: FaGithub, href: '#', label: 'GitHub' },
-  { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-  { icon: FaTwitter, href: '#', label: 'Twitter' },
-  { icon: FaInstagram, href: '#', label: 'Instagram' },
+  { icon: FaGithub, href: 'https://github.com/MoonLight3130', label: 'GitHub' },
+  { icon: FaLinkedinIn, href: 'https://linkedin.com/in/haransanthosh', label: 'LinkedIn' },
+  { icon: FaInstagram, href: 'https://www.instagram.com/h_ar_an_04/', label: 'Instagram' },
 ]
 
-const referenceImage =
-  '/@fs/C:/Users/user/.cursor/projects/c-Users-user-mine/assets/c__Users_user_AppData_Roaming_Cursor_User_workspaceStorage_4846a57a9b2ff58d7a75f71df639bb94_images_1000142909-9e753400-6fd9-4baf-9b8e-87db22fb2f9a.png'
+import profileImage from '../assets/profile.png'
 
 function Hero({ onNavClick }) {
   const heroRef = useRef(null)
@@ -254,17 +252,13 @@ function Hero({ onNavClick }) {
           <div className="absolute inset-[10px] rounded-full border border-white/26 shadow-[inset_0_0_34px_rgba(255,255,255,0.26)]" style={{ transform: 'translateZ(5px)' }} />
           <div ref={imageContainerRef} className="relative h-[500px] w-[500px] overflow-hidden rounded-full border border-white/22 bg-[#182440] shadow-[0_0_120px_rgba(0,217,255,0.68),0_0_220px_rgba(139,92,246,0.52),inset_0_0_65px_rgba(0,217,255,0.18)]" style={{ transformStyle: 'preserve-3d' }}>
             <img
-              src={referenceImage}
+              src={profileImage}
               alt="Haran profile"
-              className="h-full w-full scale-[1.75] object-cover object-[50%_18%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
+              className="h-full w-full scale-[1] object-cover object-[50%_18%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
               style={{ transform: 'translateZ(10px)' }}
             />
           </div>
 
-          <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-white/18 bg-[#111a34]/92 px-5 py-2.5 text-[14px] text-white/92 shadow-[0_0_32px_rgba(0,217,255,0.32)] backdrop-blur-xl" style={{ transform: 'translateZ(50px) translateX(-50%)' }}>
-            <span className="h-3 w-3 rounded-full bg-[#4dff9f] shadow-[0_0_10px_rgba(77,255,159,0.9)]" />
-            Available for work
-          </div>
         </div>
       </div>
 

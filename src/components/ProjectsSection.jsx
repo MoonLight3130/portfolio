@@ -2,9 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { FaGithub, FaArrowRight, FaStar, FaCheck, FaCode } from 'react-icons/fa'
-
-const previewImage =
-  '/@fs/C:/Users/user/.cursor/projects/c-Users-user-mine/assets/c__Users_user_AppData_Roaming_Cursor_User_workspaceStorage_4846a57a9b2ff58d7a75f71df639bb94_images_1000142930-4a0cdcd6-f58a-4c05-8911-36df06581637.png'
+import previewImage from '../assets/project-preview.png'
 
 const projects = [
   {
