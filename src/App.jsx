@@ -12,6 +12,7 @@ import ContactPage from './components/ContactPage'
 import FloatingElements from './components/FloatingElements'
 import AtmosphereEffects from './components/AtmosphereEffects'
 import GlowingRing from './components/GlowingRing'
+import Footer from './components/Footer'
 
 function App() {
   const [page, setPage] = useState('home')
@@ -150,6 +151,8 @@ function App() {
           </div>
         </>
       )}
+
+      <Footer onNavClick={handleNavClick} />
     </div>
   )
 }

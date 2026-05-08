@@ -1,13 +1,12 @@
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { FaArrowLeft, FaEnvelope, FaGithub, FaLinkedinIn, FaTwitter, FaInstagram, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaCheck } from 'react-icons/fa'
+import { FaArrowLeft, FaEnvelope, FaGithub, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaCheck } from 'react-icons/fa'
 
 const socialLinks = [
-  { icon: FaGithub, label: 'GitHub', handle: '@haran-dev', href: '#' },
-  { icon: FaLinkedinIn, label: 'LinkedIn', handle: 'linkedin.com/in/haran', href: '#' },
-  { icon: FaTwitter, label: 'Twitter', handle: '@haran_dev', href: '#' },
-  { icon: FaInstagram, label: 'Instagram', handle: '@haran.code', href: '#' },
+  { icon: FaGithub, label: 'GitHub', handle: '@MoonLight3130', href: 'https://github.com/MoonLight3130' },
+  { icon: FaLinkedinIn, label: 'LinkedIn', handle: 'linkedin.com/in/haransanthosh', href: 'https://linkedin.com/in/haransanthosh' },
+  { icon: FaInstagram, label: 'Instagram', handle: '@h_ar_an_04', href: 'https://www.instagram.com/h_ar_an_04/' },
 ]
 
 function ContactPage({ onBack }) {
@@ -117,6 +116,8 @@ function ContactPage({ onBack }) {
                     <a
                       key={social.label}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-[#0f1730]/92 text-white/75 shadow-[0_0_20px_rgba(0,217,255,0.22)] transition duration-300 hover:border-[#00D9FF]/70 hover:text-[#00D9FF] hover:shadow-[0_0_28px_rgba(0,217,255,0.58)]"
                     >
                       <social.icon size={15} />
