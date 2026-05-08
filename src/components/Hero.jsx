@@ -229,13 +229,13 @@ function Hero({ onNavClick }) {
           >
             VIEW MY WORK
           </button>
-          <button
-            type="button"
-            onClick={() => onNavClick && onNavClick('Contact')}
-            className="cta-btn w-full h-[52px] rounded-[16px] border border-white/26 bg-[#11192f]/84 px-6 text-[12px] font-semibold tracking-[1.3px] text-white/92 shadow-[0_0_30px_rgba(0,0,0,0.45)] transition duration-300 hover:border-[#00D9FF]/58 hover:text-white hover:shadow-[0_0_32px_rgba(0,217,255,0.42)] sm:w-auto sm:h-[58px] sm:px-9 sm:text-[13px]"
+          <a
+            href="/resume.pdf"
+            download
+            className="cta-btn grid w-full place-items-center h-[52px] rounded-[16px] border border-white/26 bg-[#11192f]/84 px-6 text-[12px] font-semibold tracking-[1.3px] text-white/92 shadow-[0_0_30px_rgba(0,0,0,0.45)] transition duration-300 hover:border-[#00D9FF]/58 hover:text-white hover:shadow-[0_0_32px_rgba(0,217,255,0.42)] sm:w-auto sm:h-[58px] sm:px-9 sm:text-[13px]"
           >
             DOWNLOAD CV
-          </button>
+          </a>
         </div>
       </div>
 
@@ -268,7 +268,7 @@ function Hero({ onNavClick }) {
             <img
               src={profileImage}
               alt="Haran profile"
-              className="h-full w-full scale-[1.25] object-cover object-[50%_25%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
+              className="h-full w-full scale-[0.8] object-cover object-[50%_25%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
               style={{ transform: 'translateZ(10px)' }}
             />
           </div>
