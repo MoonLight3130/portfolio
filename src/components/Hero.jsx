@@ -268,7 +268,7 @@ function Hero({ onNavClick }) {
             <img
               src={profileImage}
               alt="Haran profile"
-              className="h-full w-full scale-[0.8] object-cover object-[50%_25%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
+              className="h-full w-full scale-[1.05] object-cover object-[50%_25%] contrast-[1.12] saturate-[1.10] brightness-[1.05]"
               style={{ transform: 'translateZ(10px)' }}
             />
           </div>
