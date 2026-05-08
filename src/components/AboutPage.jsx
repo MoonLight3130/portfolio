@@ -43,7 +43,7 @@ const highlights = [
 
 const stats = [
   { value: '3+', label: 'Years Coding' },
-  { value: '15+', label: 'Projects Built' },
+  { value: '5+', label: 'Projects Built' },
   { value: '10K+', label: 'Lines of Code' },
   { value: '99%', label: 'Client Satisfaction' },
 ]
