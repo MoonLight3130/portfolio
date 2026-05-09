@@ -140,7 +140,7 @@ function AboutPage({ onBack }) {
             <h3 className="mb-5 text-[24px] font-semibold text-white">My Story</h3>
             <div className="space-y-4 text-[16px] leading-[1.75] text-[#aec2e1]">
               <p>
-                I started my coding journey in 2021 when I built my first HTML page. What
+                I started my coding journey in 2025 when I built my first HTML page. What
                 began as curiosity quickly turned into an obsession with creating digital
                 experiences that people love to use.
               </p>

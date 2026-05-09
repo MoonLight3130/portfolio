@@ -86,7 +86,7 @@ function App() {
             >
               <Hero onNavClick={handleNavClick} />
               <InfoGrid onNavClick={handleNavClick} />
-              <ProjectsSection />
+              <ProjectsSection onNavClick={handleNavClick} />
             </main>
           </div>
         </>

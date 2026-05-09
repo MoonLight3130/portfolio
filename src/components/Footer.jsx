@@ -19,7 +19,7 @@ const capabilities = [
 ]
 
 const techStack = [
-  'React', 'Node.js', 'TypeScript', 'Tailwind CSS', 'Python', 'AWS'
+  'React', 'Node.js', 'JavaScript', 'Tailwind CSS', 'MongoDB', 'Express.js'
 ]
 
 const socialLinks = [

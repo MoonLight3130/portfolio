@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { FaArrowLeft, FaCode, FaPaintBrush, FaServer, FaMobile, FaDatabase, FaTools } from 'react-icons/fa'
+import { FaArrowLeft, FaCode, FaServer, FaMobile, FaDatabase, FaTools, FaBrain } from 'react-icons/fa'
 
 const skillCategories = [
   {
@@ -18,19 +18,6 @@ const skillCategories = [
     ],
   },
   {
-    title: 'UI/UX Design',
-    icon: FaPaintBrush,
-    color: '#8B5CF6',
-    skills: [
-      { name: 'Figma', level: 88 },
-      { name: 'Adobe XD', level: 75 },
-      { name: 'Responsive Design', level: 95 },
-      { name: 'Animation & Motion', level: 90 },
-      { name: 'Design Systems', level: 82 },
-      { name: 'Prototyping', level: 85 },
-    ],
-  },
-  {
     title: 'Backend & APIs',
     icon: FaServer,
     color: '#00D9FF',
@@ -39,21 +26,8 @@ const skillCategories = [
       { name: 'Express.js', level: 78 },
       { name: 'REST APIs', level: 88 },
       { name: 'GraphQL', level: 72 },
-      { name: 'Authentication', level: 85 },
-      { name: 'WebSockets', level: 70 },
-    ],
-  },
-  {
-    title: 'Mobile Development',
-    icon: FaMobile,
-    color: '#8B5CF6',
-    skills: [
-      { name: 'React Native', level: 82 },
-      { name: 'Flutter', level: 65 },
-      { name: 'PWA', level: 88 },
-      { name: 'Mobile UI', level: 90 },
-      { name: 'App Store Deploy', level: 75 },
-      { name: 'Push Notifications', level: 72 },
+      { name: 'Firebase', level: 85 },
+      { name: 'Cloud Firestore', level: 82 },
     ],
   },
   {
@@ -61,24 +35,63 @@ const skillCategories = [
     icon: FaDatabase,
     color: '#00D9FF',
     skills: [
-      { name: 'MongoDB', level: 78 },
-      { name: 'PostgreSQL', level: 75 },
+      { name: 'MongoDB', level: 75 },
+      { name: 'SQL', level: 70 },
+      { name: 'PostgreSQL', level: 70 },
+      { name: 'MySQL', level: 70 },
+      { name: 'Google Cloud', level: 80 },
       { name: 'Firebase', level: 85 },
-      { name: 'AWS', level: 70 },
-      { name: 'Docker', level: 65 },
-      { name: 'CI/CD', level: 72 },
+    ],
+  },
+  {
+    title: 'AI & Productivity',
+    icon: FaBrain,
+    color: '#8B5CF6',
+    skills: [
+      { name: 'Artificial Intelligence', level: 82 },
+      { name: 'Generative AI Tools', level: 88 },
+      { name: 'Prompt Engineering', level: 92 },
+      { name: 'GitHub Copilot', level: 90 },
+      { name: 'Microsoft Copilot', level: 88 },
+      { name: 'Critical Thinking', level: 85 },
+    ],
+  },
+  {
+    title: 'Programming Languages',
+    icon: FaCode,
+    color: '#00D9FF',
+    skills: [
+      { name: 'JavaScript', level: 92 },
+      { name: 'Python', level: 78 },
+      { name: 'TypeScript', level: 85 },
+      { name: 'Java', level: 70 },
+      { name: 'C Programming', level: 70 },
+      { name: 'Node.js', level: 80 },
+    ],
+  },
+  {
+    title: 'Data & Machine Learning',
+    icon: FaBrain,
+    color: '#8B5CF6',
+    skills: [
+      { name: 'Machine Learning', level: 75 },
+      { name: 'Deep Learning', level: 70 },
+      { name: 'Data Analysis', level: 72 },
+      { name: 'Artificial Intelligence', level: 82 },
+      { name: 'Python', level: 78 },
+      { name: 'DBMS', level: 75 },
     ],
   },
   {
     title: 'Tools & Workflow',
     icon: FaTools,
-    color: '#8B5CF6',
+    color: '#00D9FF',
     skills: [
       { name: 'Git/GitHub', level: 92 },
       { name: 'VS Code', level: 95 },
-      { name: 'Webpack/Vite', level: 82 },
-      { name: 'Jest/Testing', level: 78 },
+      { name: 'Webpack/Vite', level: 93 },
       { name: 'Agile/Scrum', level: 85 },
+      { name: 'Testing', level: 80 },
       { name: 'Documentation', level: 90 },
     ],
   },

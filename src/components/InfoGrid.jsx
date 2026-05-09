@@ -28,21 +28,21 @@ const skills = [
 
 const experiences = [
   {
-    role: 'Frontend Developer Intern',
-    company: 'ABC Company',
+    role: 'Freelance Frontend Developer',
+    company: 'Self-Employed',
     dates: '2024 - Present',
     dot: '#49deff',
   },
   {
-    role: 'Web Developer Intern',
-    company: 'XYZ Company',
-    dates: '2023 - 2024',
+    role: 'B.Tech Computer Science Student',
+    company: 'MES Institute, Kollam (KTU)',
+    dates: '2023 - 2027',
     dot: '#b97dff',
   },
   {
-    role: 'Freelance Developer',
-    company: '',
-    dates: '2022 - 2023',
+    role: 'Self-Learning & Projects',
+    company: 'Personal Development',
+    dates: '2023 - Present',
     dot: '#9c7bff',
   },
 ]

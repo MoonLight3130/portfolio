@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { FaArrowLeft, FaEnvelope, FaGithub, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaCheck } from 'react-icons/fa'
+import emailjs from '@emailjs/browser'
+import { FaArrowLeft, FaEnvelope, FaGithub, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaCheck, FaExclamationCircle } from 'react-icons/fa'
 
 const socialLinks = [
   { icon: FaGithub, label: 'GitHub', handle: '@MoonLight3130', href: 'https://github.com/MoonLight3130' },
@@ -9,9 +10,17 @@ const socialLinks = [
   { icon: FaInstagram, label: 'Instagram', handle: '@h_ar_an_04', href: 'https://www.instagram.com/h_ar_an_04/' },
 ]
 
+// EmailJS configuration from environment variables
+// Add your keys in .env file and restart the dev server
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
 function ContactPage({ onBack }) {
   const pageRef = useRef(null)
-  const [sent, setSent] = useState(false)
+  const formRef = useRef(null)
+  const [status, setStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
+  const [errorMsg, setErrorMsg] = useState('')
 
   useGSAP(
     () => {
@@ -27,10 +36,46 @@ function ContactPage({ onBack }) {
     { scope: pageRef },
   )
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 3000)
+
+    // Validate that EmailJS is configured
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setStatus('error')
+      setErrorMsg('EmailJS not configured. Please add your keys to the .env file.')
+      return
+    }
+
+    setStatus('loading')
+    setErrorMsg('')
+
+    try {
+      const form = formRef.current
+      if (!form) return
+
+      const formData = new FormData(form)
+
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: formData.get('from_name'),
+          from_email: formData.get('from_email'),
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+        },
+        PUBLIC_KEY,
+      )
+
+      setStatus('success')
+      form.reset()
+
+      // Auto-reset status after 4 seconds
+      setTimeout(() => setStatus('idle'), 4000)
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg(err?.text || 'Failed to send message. Please try again.')
+    }
   }
 
   return (
@@ -143,11 +188,12 @@ function ContactPage({ onBack }) {
           <div className="contact-reveal relative overflow-hidden rounded-[22px] border border-[#2b4976]/80 bg-[#0a1228]/90 p-8 shadow-[inset_0_0_40px_rgba(0,217,255,0.08),0_14px_48px_rgba(2,8,25,0.6),0_0_28px_rgba(0,217,255,0.06)]">
             <h3 className="mb-6 text-[24px] font-semibold text-white">Send a Message</h3>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-[13px] uppercase tracking-wider text-[#8a9cc4]">Name</label>
                   <input
+                    name="from_name"
                     type="text"
                     placeholder="Your name"
                     className="w-full rounded-xl border border-[#2b4976]/80 bg-[#070f24]/80 px-5 py-3.5 text-[15px] text-white outline-none transition-all placeholder:text-[#4a5b82] focus:border-[#00D9FF]/60 focus:shadow-[0_0_20px_rgba(0,217,255,0.2)]"
@@ -157,6 +203,7 @@ function ContactPage({ onBack }) {
                 <div>
                   <label className="mb-2 block text-[13px] uppercase tracking-wider text-[#8a9cc4]">Email</label>
                   <input
+                    name="from_email"
                     type="email"
                     placeholder="your@email.com"
                     className="w-full rounded-xl border border-[#2b4976]/80 bg-[#070f24]/80 px-5 py-3.5 text-[15px] text-white outline-none transition-all placeholder:text-[#4a5b82] focus:border-[#00D9FF]/60 focus:shadow-[0_0_20px_rgba(0,217,255,0.2)]"
@@ -168,6 +215,7 @@ function ContactPage({ onBack }) {
               <div>
                 <label className="mb-2 block text-[13px] uppercase tracking-wider text-[#8a9cc4]">Subject</label>
                 <input
+                  name="subject"
                   type="text"
                   placeholder="Project inquiry"
                   className="w-full rounded-xl border border-[#2b4976]/80 bg-[#070f24]/80 px-5 py-3.5 text-[15px] text-white outline-none transition-all placeholder:text-[#4a5b82] focus:border-[#00D9FF]/60 focus:shadow-[0_0_20px_rgba(0,217,255,0.2)]"
@@ -178,6 +226,7 @@ function ContactPage({ onBack }) {
               <div>
                 <label className="mb-2 block text-[13px] uppercase tracking-wider text-[#8a9cc4]">Message</label>
                 <textarea
+                  name="message"
                   placeholder="Tell me about your project..."
                   rows={5}
                   className="w-full resize-none rounded-xl border border-[#2b4976]/80 bg-[#070f24]/80 px-5 py-3.5 text-[15px] text-white outline-none transition-all placeholder:text-[#4a5b82] focus:border-[#00D9FF]/60 focus:shadow-[0_0_20px_rgba(0,217,255,0.2)]"
@@ -185,14 +234,40 @@ function ContactPage({ onBack }) {
                 />
               </div>
 
+              {/* Status Messages */}
+              {status === 'error' && (
+                <div className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-[14px] text-red-400">
+                  <FaExclamationCircle />
+                  {errorMsg}
+                </div>
+              )}
+
+              {status === 'success' && (
+                <div className="flex items-center gap-2 rounded-xl border border-[#4ade80]/30 bg-[#4ade80]/10 px-4 py-3 text-[14px] text-[#4ade80]">
+                  <FaCheck />
+                  Message sent successfully! I&apos;ll get back to you soon.
+                </div>
+              )}
+
               <button
                 type="submit"
-                className={`flex w-full items-center justify-center gap-3 rounded-xl px-8 py-4 text-[14px] font-semibold uppercase tracking-[1.5px] text-white shadow-[0_14px_38px_rgba(139,92,246,0.4)] transition duration-300 ${sent
+                disabled={status === 'loading'}
+                className={`flex w-full items-center justify-center gap-3 rounded-xl px-8 py-4 text-[14px] font-semibold uppercase tracking-[1.5px] text-white shadow-[0_14px_38px_rgba(139,92,246,0.4)] transition duration-300 ${status === 'success'
                   ? 'border border-[#4ade80]/50 bg-[#4ade80]/20'
-                  : 'border border-[#8B5CF6]/80 bg-gradient-to-r from-[#6d5cff] via-[#9367ff] to-[#d66dff] hover:shadow-[0_0_42px_rgba(139,92,246,0.6)]'
-                  }`}
+                  : status === 'error'
+                    ? 'border border-red-500/50 bg-gradient-to-r from-[#ff6b6b] via-[#ff8e8e] to-[#ff5252]'
+                    : 'border border-[#8B5CF6]/80 bg-gradient-to-r from-[#6d5cff] via-[#9367ff] to-[#d66dff] hover:shadow-[0_0_42px_rgba(139,92,246,0.6)]'
+                  } ${status === 'loading' ? 'cursor-wait opacity-80' : 'cursor-pointer'}`}
               >
-                {sent ? (
+                {status === 'loading' ? (
+                  <>
+                    <svg className="h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Sending...
+                  </>
+                ) : status === 'success' ? (
                   <>
                     <FaCheck className="text-[#4ade80]" />
                     Message Sent!

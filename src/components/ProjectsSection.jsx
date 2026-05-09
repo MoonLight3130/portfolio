@@ -31,7 +31,7 @@ const projects = [
   },
 ]
 
-function ProjectsSection() {
+function ProjectsSection({ onNavClick }) {
   const sectionRef = useRef(null)
 
   useGSAP(
@@ -86,13 +86,14 @@ function ProjectsSection() {
           <h3 className="text-[22px] font-semibold uppercase tracking-[1.5px] text-[#55d9ff] [text-shadow:0_0_12px_rgba(85,217,255,0.4)]">
             Featured Projects
           </h3>
-          <a
-            href="#projects"
+          <button
+            type="button"
+            onClick={() => onNavClick && onNavClick('Projects')}
             className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[1.25px] text-white/88 transition duration-300 hover:text-[#00D9FF]"
           >
             VIEW ALL PROJECTS
             <FaArrowRight size={12} />
-          </a>
+          </button>
         </div>
 
         <div className="grid gap-5 p-4 sm:p-6 lg:grid-cols-3 lg:p-8">
