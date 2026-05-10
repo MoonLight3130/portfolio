@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
@@ -11,6 +11,32 @@ const socialLinks = [
 ]
 
 import profileImage from '../assets/profile.png'
+
+function TypingText() {
+  const [text, setText] = useState('')
+  const fullText = 'MernStack Developer'
+  const typingSpeed = 120
+
+  useEffect(() => {
+    let index = 0
+    const tick = () => {
+      setText(fullText.slice(0, index + 1))
+      index += 1
+      if (index < fullText.length) {
+        setTimeout(tick, typingSpeed)
+      }
+    }
+
+    const timeout = setTimeout(tick, 600)
+    return () => clearTimeout(timeout)
+  }, [])
+
+  return (
+    <span className="mt-3 block bg-gradient-to-r from-[#00D9FF] via-[#56beff] to-[#8B5CF6] bg-clip-text text-[28px] font-semibold tracking-[-1.6px] text-transparent lg:text-[76px]">
+      {text}
+    </span>
+  )
+}
 
 function Hero({ onNavClick }) {
   const heroRef = useRef(null)
@@ -183,7 +209,7 @@ function Hero({ onNavClick }) {
             key={label}
             href={href}
             aria-label={label}
-            className="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-[#0f1730]/92 text-white/75 shadow-[0_0_20px_rgba(0,217,255,0.22)] transition duration-300 hover:border-[#00D9FF]/70 hover:text-[#00D9FF] hover:shadow-[0_0_28px_rgba(0,217,255,0.58)]"
+            className="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-[#0f1730]/92 text-white/75 shadow-[0_0_20px_rgba(0,217,255,0.22)] transition duration-300 hover:scale-110 hover:border-[#00D9FF]/70 hover:text-[#00D9FF] hover:shadow-[0_0_28px_rgba(0,217,255,0.58)] active:scale-95"
           >
             <Icon size={14} />
           </a>
@@ -197,7 +223,7 @@ function Hero({ onNavClick }) {
             key={label}
             href={href}
             aria-label={label}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/18 bg-[#0f1730]/92 text-white/75 shadow-[0_0_20px_rgba(0,217,255,0.22)] transition duration-300 hover:border-[#00D9FF]/70 hover:text-[#00D9FF] hover:shadow-[0_0_28px_rgba(0,217,255,0.58)]"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/18 bg-[#0f1730]/92 text-white/75 shadow-[0_0_20px_rgba(0,217,255,0.22)] transition duration-300 hover:scale-110 hover:border-[#00D9FF]/70 hover:text-[#00D9FF] hover:shadow-[0_0_28px_rgba(0,217,255,0.58)] active:scale-95"
           >
             <Icon size={12} />
           </a>
@@ -212,9 +238,7 @@ function Hero({ onNavClick }) {
 
         <h1 className="hero-reveal text-center text-[48px] font-bold leading-[1.02] tracking-[-3.2px] text-white [text-shadow:0_0_24px_rgba(255,255,255,0.16)] lg:text-[110px] lg:text-left">
           Haran
-          <span className="mt-3 block bg-gradient-to-r from-[#00D9FF] via-[#56beff] to-[#8B5CF6] bg-clip-text text-[28px] font-semibold tracking-[-1.6px] text-transparent lg:text-[76px]">
-            Frontend Developer
-          </span>
+          <TypingText />
         </h1>
 
         <p className="hero-reveal mt-6 max-w-[450px] text-center text-[18px] leading-[1.72] text-[#bfd0ee] lg:mt-8 lg:text-[26px] lg:text-left">
@@ -225,14 +249,14 @@ function Hero({ onNavClick }) {
           <button
             type="button"
             onClick={() => onNavClick && onNavClick('Projects')}
-            className="cta-btn w-full h-[52px] rounded-[16px] border border-[#8B5CF6]/80 bg-gradient-to-r from-[#6d5cff] via-[#9367ff] to-[#d66dff] px-6 text-[12px] font-semibold tracking-[1.3px] text-white shadow-[0_14px_38px_rgba(139,92,246,0.62)] transition duration-300 hover:shadow-[0_0_42px_rgba(139,92,246,0.82)] sm:w-auto sm:h-[58px] sm:px-9 sm:text-[13px]"
+            className="cta-btn w-full h-[52px] rounded-[16px] border border-[#8B5CF6]/80 bg-gradient-to-r from-[#6d5cff] via-[#9367ff] to-[#d66dff] px-6 text-[12px] font-semibold tracking-[1.3px] text-white shadow-[0_14px_38px_rgba(139,92,246,0.62)] transition duration-300 hover:scale-105 hover:shadow-[0_0_42px_rgba(139,92,246,0.82)] active:scale-95 sm:w-auto sm:h-[58px] sm:px-9 sm:text-[13px]"
           >
             VIEW MY WORK
           </button>
           <a
             href="/resume.pdf"
             download
-            className="cta-btn grid w-full place-items-center h-[52px] rounded-[16px] border border-white/26 bg-[#11192f]/84 px-6 text-[12px] font-semibold tracking-[1.3px] text-white/92 shadow-[0_0_30px_rgba(0,0,0,0.45)] transition duration-300 hover:border-[#00D9FF]/58 hover:text-white hover:shadow-[0_0_32px_rgba(0,217,255,0.42)] sm:w-auto sm:h-[58px] sm:px-9 sm:text-[13px]"
+            className="cta-btn grid w-full place-items-center h-[52px] rounded-[16px] border border-white/26 bg-[#11192f]/84 px-6 text-[12px] font-semibold tracking-[1.3px] text-white/92 shadow-[0_0_30px_rgba(0,0,0,0.45)] transition duration-300 hover:scale-105 hover:border-[#00D9FF]/58 hover:text-white hover:shadow-[0_0_32px_rgba(0,217,255,0.42)] active:scale-95 sm:w-auto sm:h-[58px] sm:px-9 sm:text-[13px]"
           >
             DOWNLOAD CV
           </a>

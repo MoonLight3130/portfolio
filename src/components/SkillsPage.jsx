@@ -20,7 +20,7 @@ const skillCategories = [
   {
     title: 'Backend & APIs',
     icon: FaServer,
-    color: '#00D9FF',
+    color: '#4ade80',
     skills: [
       { name: 'Node.js', level: 80 },
       { name: 'Express.js', level: 78 },
@@ -33,7 +33,7 @@ const skillCategories = [
   {
     title: 'Database & Cloud',
     icon: FaDatabase,
-    color: '#00D9FF',
+    color: '#3b82f6',
     skills: [
       { name: 'MongoDB', level: 75 },
       { name: 'SQL', level: 70 },
@@ -59,7 +59,7 @@ const skillCategories = [
   {
     title: 'Programming Languages',
     icon: FaCode,
-    color: '#00D9FF',
+    color: '#fbbf24',
     skills: [
       { name: 'JavaScript', level: 92 },
       { name: 'Python', level: 78 },
@@ -72,7 +72,7 @@ const skillCategories = [
   {
     title: 'Data & Machine Learning',
     icon: FaBrain,
-    color: '#8B5CF6',
+    color: '#ec4899',
     skills: [
       { name: 'Machine Learning', level: 75 },
       { name: 'Deep Learning', level: 70 },
@@ -85,7 +85,7 @@ const skillCategories = [
   {
     title: 'Tools & Workflow',
     icon: FaTools,
-    color: '#00D9FF',
+    color: '#14b8a6',
     skills: [
       { name: 'Git/GitHub', level: 92 },
       { name: 'VS Code', level: 95 },

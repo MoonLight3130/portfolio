@@ -18,7 +18,7 @@ const experiences = [
     role: 'B.Tech Computer Science Student',
     company: 'MES Institute of Technology and Management, Chathannoor, Kollam (KTU)',
     location: 'Kerala, India',
-    period: '2023 - 2027',
+    period: '2023 - Present',
     type: 'STUDENT',
     description: 'Currently pursuing B.Tech in Computer Science Engineering with focus on frontend development, AI tools, modern web technologies, cloud platforms, and software engineering. Actively building real-world projects and continuously learning modern development workflows.',
     achievements: ['Frontend specialization', 'AI productivity tools', 'Modern web development', 'Real-world project building'],

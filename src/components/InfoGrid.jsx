@@ -36,7 +36,7 @@ const experiences = [
   {
     role: 'B.Tech Computer Science Student',
     company: 'MES Institute, Kollam (KTU)',
-    dates: '2023 - 2027',
+    dates: '2023 - Present',
     dot: '#b97dff',
   },
   {
