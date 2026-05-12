@@ -5,58 +5,70 @@ import { FaArrowLeft, FaStar, FaCheck, FaCode, FaGithub, FaArrowRight, FaExterna
 
 const projects = [
   {
-    title: 'DevFlow',
-    description: 'A comprehensive developer platform for discovering, sharing, and collaborating on developer resources. Features real-time code sharing, community forums, and resource libraries.',
+    title: 'ResQNow — Emergency Assistance Platform',
+    description: 'Smart emergency response platform designed to provide instant access to medical, police, and rescue assistance through real-time location tracking and modern responsive UI. Currently working on live emergency alerts, real-time responder tracking, secure authentication, and faster emergency communication systems.',
     tech: ['React', 'Tailwind', 'Firebase', 'Node.js'],
     icon: FaStar,
     iconColor: '#ffd700',
-    stats: { stars: '2.4k', forks: '380' },
+    stats: {},
     featured: true,
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://resqnow-9e907.web.app/',
   },
   {
-    title: 'Taskify',
-    description: 'Modern task management application with Kanban boards, team collaboration, time tracking, and automated workflow management for productivity-focused teams.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
+    title: 'TaskFlow — Smart Task Management Platform',
+    description: 'Modern task management platform with real-time collaboration, smart workflow organization, and productivity-focused features for teams and individuals. Currently working on AI-powered task automation, drag-and-drop Kanban boards, and advanced real-time notification systems.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     icon: FaCheck,
     iconColor: '#4ade80',
-    stats: { stars: '1.8k', forks: '240' },
+    stats: {},
     featured: true,
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://taskflow01-chi.vercel.app/',
   },
   {
-    title: 'Portfolio 3.0',
-    description: 'My personal portfolio showcasing GSAP animations, Three.js 3D elements, and premium glassmorphism design. Built with performance and visual excellence in mind.',
+    title: 'BrawlersHood — Esports Documentary Experience',
+    description: 'eSports platform exploring competitive gaming culture through cinematic storytelling, interactive visuals, and modern web animations. Currently working on animations, dynamic transitions, interactive story sections, and performance optimization for a smoother cinematic experience.',
     tech: ['React', 'GSAP', 'Tailwind', 'Three.js'],
     icon: FaCode,
     iconColor: '#00D9FF',
-    stats: { stars: '950', forks: '120' },
+    stats: {},
     featured: true,
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://subtle-beijinho-d533fd.netlify.app/',
   },
   {
-    title: 'E-Commerce Dashboard',
-    description: 'Full-featured admin dashboard for e-commerce platforms with analytics, inventory management, order tracking, and customer insights in real-time.',
-    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Chart.js'],
+    title: 'EverAfter — Wedding Event Platform',
+    description: 'Elegant wedding event platform designed for showcasing wedding details, photo galleries, RSVP management, and memorable moments with a modern responsive UI. Currently working on interactive invitations, guest management features, animated galleries, and seamless event scheduling integration.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     icon: FaStar,
     iconColor: '#8B5CF6',
-    stats: { stars: '1.2k', forks: '180' },
+    stats: {},
     featured: false,
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://wedding-azure-two.vercel.app/',
   },
   {
-    title: 'Social Connect',
-    description: 'Real-time social media platform with messaging, story sharing, live notifications, and AI-powered content recommendations for enhanced user engagement.',
-    tech: ['React Native', 'Firebase', 'Redux', 'WebRTC'],
+    title: 'Developer Portfolio 3.0',
+    description: 'Modern personal portfolio website featuring immersive animations, glowing UI elements, and responsive layouts to showcase skills, projects, and frontend development expertise. Currently working on advanced motion effects, interactive project sections, smooth GSAP transitions, and optimized performance for a seamless user experience.',
+    tech: ['React', 'GSAP', 'Tailwind', 'Three.js'],
     icon: FaCheck,
     iconColor: '#00D9FF',
-    stats: { stars: '890', forks: '95' },
+    stats: {},
     featured: false,
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://portfolio-eta-eosin-28.vercel.app/',
   },
   {
-    title: 'AI Code Assistant',
-    description: 'Intelligent code completion and review tool powered by OpenAI GPT. Provides smart suggestions, bug detection, and automated code refactoring capabilities.',
-    tech: ['Python', 'FastAPI', 'React', 'OpenAI'],
+    title: 'Developer Portfolio 2.0',
+    description: 'Modern interactive developer portfolio built with smooth animations, glassmorphism UI, and responsive design to showcase projects, skills, and experience in a visually engaging way. Currently working on advanced GSAP animations, interactive project showcases, performance optimization, and enhanced mobile responsiveness.',
+    tech: ['React', 'GSAP', 'Tailwind', 'Three.js'],
     icon: FaCode,
     iconColor: '#4ade80',
-    stats: { stars: '1.5k', forks: '210' },
+    stats: {},
     featured: false,
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://stellar-faloodeh-2c19d3.netlify.app/',
   },
 ]
 
@@ -246,17 +258,20 @@ function ProjectsPage({ onBack }) {
                 <div className="flex items-center justify-between">
                   <button
                     type="button"
+                    onClick={() => window.open(project.demoUrl, '_blank')}
                     className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[1.2px] text-white/80 transition duration-300 hover:text-[#00D9FF]"
                   >
                     Live Demo
                     <FaExternalLinkAlt size={11} />
                   </button>
-                  <button
-                    type="button"
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="grid h-10 w-10 place-items-center rounded-full border border-[#365483] text-white/88 transition duration-300 hover:border-[#00D9FF] hover:text-[#00D9FF] hover:shadow-[0_0_20px_rgba(0,217,255,0.5)]"
                   >
                     <FaGithub />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

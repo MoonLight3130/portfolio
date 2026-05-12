@@ -3,31 +3,43 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { FaGithub, FaArrowRight, FaStar, FaCheck, FaCode } from 'react-icons/fa'
 import previewImage from '../assets/project-preview.png'
+import resqnowPreview from '../assets/resqnow-preview.png.png'
+import brawlershoodPreview from '../assets/brawlershood-preview.png.png'
+import taskflowPreview from '../assets/taskflow-preview.png.png'
 
 const projects = [
   {
-    title: 'DevFlow',
-    description: 'A platform to discover and share developer resources.',
-    tech: ['React', 'Tailwind', 'Firebase'],
+    title: 'ResQNow — Emergency Assistance Platform',
+    description: 'Smart emergency response platform designed to provide instant access to medical, police, and rescue assistance through real-time location tracking and modern responsive UI.',
+    tech: ['React', 'Tailwind', 'Firebase', 'Node.js'],
     imagePos: '12% 77%',
     icon: FaStar,
     iconColor: '#ffd700',
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://resqnow-9e907.web.app/',
+    previewImage: resqnowPreview,
   },
   {
-    title: 'Taskify',
-    description: 'A modern task management app to boost productivity.',
-    tech: ['React', 'Node.js', 'MongoDB'],
+    title: 'TaskFlow — Smart Task Management Platform',
+    description: 'Modern task management platform with real-time collaboration, smart workflow organization, and productivity-focused features for real time, teams and individuals.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     imagePos: '50% 77%',
     icon: FaCheck,
     iconColor: '#4ade80',
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://taskflow01-chi.vercel.app/',
+    previewImage: taskflowPreview,
   },
   {
-    title: 'Portfolio 3.0',
-    description: 'My personal portfolio built with React, GSAP and Tailwind CSS.',
-    tech: ['React', 'GSAP', 'Tailwind'],
+    title: 'BrawlersHood — Esports Documentary Experience',
+    description: 'eSports platform exploring competitive gaming culture through cinematic storytelling, interactive visuals, and modern web animations.',
+    tech: ['React', 'GSAP', 'Tailwind', 'Three.js'],
     imagePos: '85% 77%',
     icon: FaCode,
     iconColor: '#00D9FF',
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://subtle-beijinho-d533fd.netlify.app/',
+    previewImage: brawlershoodPreview,
   },
 ]
 
@@ -105,19 +117,14 @@ function ProjectsSection({ onNavClick }) {
               <div className="relative overflow-hidden rounded-xl border border-[#314a74]">
                 <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.14),transparent_42%)] opacity-80" />
                 <img
-                  src={previewImage}
+                  src={project.previewImage || previewImage}
                   alt={project.title}
-                  className="h-[180px] w-full object-cover transition duration-500 group-hover:scale-[1.07]"
+                  className="h-[180px] w-full object-cover transition duration-500 group-hover:scale-[1.45]"
                   style={{ objectPosition: project.imagePos }}
                 />
               </div>
 
-              <div className="mt-5 flex items-center gap-3">
-                <project.icon
-                  size={24}
-                  style={{ color: project.iconColor }}
-                  className="[filter:drop-shadow(0_0_8px_currentColor)] sm:size-28"
-                />
+              <div className="mt-5">
                 <h4 className="text-[24px] font-semibold tracking-[-0.5px] text-white sm:text-[32px]">
                   {project.title}
                 </h4>
@@ -140,6 +147,7 @@ function ProjectsSection({ onNavClick }) {
               <div className="mt-6 flex items-center justify-between">
                 <button
                   type="button"
+                  onClick={() => window.open(project.demoUrl, '_blank')}
                   className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[1.2px] text-white transition duration-300 hover:text-[#00D9FF]"
                 >
                   LIVE DEMO
@@ -147,6 +155,7 @@ function ProjectsSection({ onNavClick }) {
                 </button>
                 <button
                   type="button"
+                  onClick={() => window.open(project.githubUrl, '_blank')}
                   aria-label={`${project.title} source code`}
                   className="grid h-10 w-10 place-items-center rounded-full border border-[#365483] text-white/88 transition duration-300 hover:border-[#00D9FF] hover:text-[#00D9FF] hover:shadow-[0_0_20px_rgba(0,217,255,0.5)]"
                 >
