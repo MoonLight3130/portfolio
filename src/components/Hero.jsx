@@ -309,7 +309,7 @@ function Hero({ onNavClick }) {
             name: <span className="text-[#ffd891] [text-shadow:0_0_8px_rgba(255,216,145,0.5)]">&quot;Haran&quot;</span>,
           </div>
           <div className="pl-4">
-            role: <span className="text-[#9effb8] [text-shadow:0_0_8px_rgba(158,255,184,0.5)]">&quot;Frontend Developer&quot;</span>,
+            role: <span className="text-[#9effb8] [text-shadow:0_0_8px_rgba(158,255,184,0.5)]">&quot;FullStack Developer&quot;</span>,
           </div>
           <div className="pl-4">
             passion: <span className="text-[#ffd891] [text-shadow:0_0_8px_rgba(255,216,145,0.5)]">&quot;Building beautiful web</span>

@@ -15,6 +15,16 @@ const experiences = [
     color: '#00D9FF',
   },
   {
+    role: 'Freelance Frontend Developer',
+    company: 'Self-Employed',
+    location: 'Remote',
+    period: '2025 - Present',
+    type: 'FREELANCE',
+    description: 'Building modern responsive websites, animated portfolio experiences, and frontend UI projects using React.js, Tailwind CSS, GSAP, and modern web technologies. Focused on creating visually stunning and performance-optimized user interfaces for personal and client projects.',
+    achievements: ['Built futuristic portfolio websites', 'React + Tailwind projects', 'GSAP animated interfaces', 'Responsive UI development'],
+    color: '#00D9FF',
+  },
+  {
     role: 'B.Tech Computer Science Student',
     company: 'MES Institute of Technology and Management, Chathannoor, Kollam (KTU)',
     location: 'Kerala, India',
