@@ -19,7 +19,28 @@ const projects = [
     demoUrl: 'https://resqnow-9e907.web.app/',
     previewImage: resqnowPreview,
   },
-
+  {
+    title: 'TaskFlow — Smart Task Management Platform',
+    description: 'Modern task management platform with real-time collaboration, smart workflow organization, and productivity-focused features for real time, teams and individuals.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
+    imagePos: '50% 77%',
+    icon: FaCheck,
+    iconColor: '#4ade80',
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://taskflow01-chi.vercel.app/',
+    previewImage: taskflowPreview,
+  },
+  {
+    title: 'BrawlersHood — Esports Documentary Experience',
+    description: 'eSports platform exploring competitive gaming culture through cinematic storytelling, interactive visuals, and modern web animations.',
+    tech: ['React', 'GSAP', 'Tailwind', 'Three.js'],
+    imagePos: '85% 77%',
+    icon: FaCode,
+    iconColor: '#00D9FF',
+    githubUrl: 'https://github.com/MoonLight3130/',
+    demoUrl: 'https://subtle-beijinho-d533fd.netlify.app/',
+    previewImage: brawlershoodPreview,
+  },
 ]
 
 function ProjectsSection({ onNavClick }) {
