@@ -31,15 +31,15 @@ const projects = [
     previewImage: "https://res.cloudinary.com/nmrxsjhh/image/upload/v1790002716/Untitled_design_a0j7ln.png",
   },
   {
-    title: 'BrawlersHood — Esports Documentary Experience',
-    description: 'eSports platform exploring competitive gaming culture through cinematic storytelling, interactive visuals, and modern web animations.',
-    tech: ['React', 'GSAP', 'Tailwind', 'Three.js'],
+    title: 'Zahara',
+    description: 'Anzari Furniture is a modern furniture platform offering premium furniture collections with a seamless online shopping experience.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     imagePos: '85% 77%',
     icon: FaCode,
     iconColor: '#00D9FF',
-    githubUrl: 'https://github.com/MoonLight3130/',
-    demoUrl: 'https://subtle-beijinho-d533fd.netlify.app/',
-    previewImage: brawlershoodPreview,
+    githubUrl: 'https://github.com/MoonLight3130/zahara',
+    demoUrl: 'https://zahara-plum.vercel.app/',
+    previewImage: "https://res.cloudinary.com/akiczstp/image/upload/v1785983172/ChatGPT_Image_Aug_6_2026_07_54_14_AM_b9qk0p.png",
   },
 ]
 
